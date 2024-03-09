@@ -24,6 +24,26 @@ b_type = [
     "bgeu"
 ]
 
+i_type = [
+    "lw",
+    "addi",
+    "sltiu",
+    "jalr"
+]
+
+s_type = [
+    "sw"
+]
+
+u_type = [
+    "lui",
+    "auipc"
+]
+
+j_type = [
+    "jal"
+]
+
 f7 = {
     "add" : "0000000",
     "sub" : "0100000",
@@ -51,7 +71,13 @@ f3 = {
     "blt" : "100",
     "bge" : "101",
     "bltu": "110",
-    "bgeu": "111"
+    "bgeu": "111",
+    "lw"  : "010",
+    "addi": "000",
+    "sltiu":"011",
+    "jalr": "000",
+    "sw"  : "010",
+    
 }
 
 
