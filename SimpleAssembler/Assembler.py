@@ -21,12 +21,13 @@ with open(abs_path + "CO_Project_24/automatedTesting/tests/assembly/user_bin_s/o
             reg2 = text[3]
             if operation == 'sub' :
                 output += funct7(operation)
-                output += rs(reg1)
                 output += rs(reg2)
+                output += rs(reg1)
                 output += funct3(operation)
                 output += rs(dest)
-                output += opcode("r_type")
-                
+                output += opcode["r_type"]
+                print(output)
+                break
 
 
 
