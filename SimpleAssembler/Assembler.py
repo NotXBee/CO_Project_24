@@ -13,11 +13,7 @@ with open(abs_path + "CO_Project_24/automatedTesting/tests/assembly/user_bin_s/o
     output = ""
     for i in lines :
 
-        # text = re.split("\s|,|\n", i)
-        
-        # 
-        # 
-        text = ["bltu", "a1", "a7", "32"]
+        text = re.split("\s|,|\n", i)
     
         if text[0] in r_type : 
             operation = text[0]
@@ -38,17 +34,14 @@ with open(abs_path + "CO_Project_24/automatedTesting/tests/assembly/user_bin_s/o
             reg2 = text[2]
             imm = format(int(text[3]), '013b')
             output += imm[0] + imm[2:8]
-            # output += imm[0:7]
             output += rs(reg2)
             output += rs(reg1)
             output += funct3(operation)
             output += imm[8:12] + imm[1]
-            # output += imm[7:]
             output += opcode["b_type"]
             output += '\n'
-            print(imm)
-            print(output)
-            break
+            
+        
             
 
 
