@@ -18,3 +18,22 @@ def registeraddress(register):
     if(register in registers.keys()):
         return registers[register]
     return -1
+    
+def instructiontype(instruction):
+    '''
+    Returns from {r,i,s,b,u,j} depending on the type of the instruction 
+    If the instruction is not part of the ISA, the function returns -1
+    '''
+    type=   {
+                'R': ["add", "sub", "sll", "slt", "sltu","xor","srl","or","and"],
+                'I': ["lw","addi","sltiu","jalr"],
+                'S': ["sw"],
+                'B': ["beq","bne","blt","bge","bltu","bgeu"],
+                'U': ["lui","auipc"],
+                'J': ["jal"]
+            } 
+    
+    for i in type.keys():
+        if instruction in type[i]:
+            return i
+    return -1
