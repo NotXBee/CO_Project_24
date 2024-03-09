@@ -1,6 +1,28 @@
 opcode = {
-    "r_type" : "0110011"
+    "r_type" : "0110011",
+    "b_type" : "1100011"
 }
+
+r_type = [
+    "add",
+    "sub",
+    "sll",
+    "slt",
+    "sltu",
+    "xor",
+    "srl",
+    "or",
+    "and"
+]
+
+b_type = [
+    "beq",
+    "bne",
+    "blt",
+    "bge",
+    "bltu",
+    "bgeu"
+]
 
 f7 = {
     "add" : "0000000",
@@ -24,6 +46,7 @@ f3 = {
     "srl" : "101",
     "or"  : "110",
     "and" : "111",
+    "beq" : "000"
 }
 
 
