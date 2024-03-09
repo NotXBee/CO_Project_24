@@ -1,0 +1,29 @@
+import os
+import pprint
+import re
+from typesofinstructions import *
+from utility import *
+
+abs_path = os.path.split(os.getcwd())[0] + '/' + os.path.split(os.getcwd())[1] + '/'
+
+with open(abs_path + "CO_Project_24/automatedTesting/tests/assembly/simpleBin/test1.txt") as f :
+    lines = f.readlines()
+    lines = [i for i in lines if i != '\n'] # removing empty lines
+
+with open(abs_path + "CO_Project_24/automatedTesting/tests/assembly/user_bin_s/output1.txt", "w") as f :
+    output = ""
+    for i in lines :
+        text = re.split("\s|,|\n", i)
+        if text[0] in r_type : 
+            operation = text[0]
+            dest = text[1]
+            reg1 = text[2]
+            reg2 = text[3]
+            if operation == 'sub' :
+                output += funct7(operation)
+                print(output)
+                break
+
+
+
+
