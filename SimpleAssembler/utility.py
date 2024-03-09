@@ -1,3 +1,7 @@
+opcode = {
+    "r_type" : "0110011"
+}
+
 '''
 This first7 dictionary lists all the funct7 binary codes
 for the operations in rtype
@@ -51,3 +55,4 @@ def funct7(operation) :
     return first7[operation]
 
 def rs(register) :
+    pass
