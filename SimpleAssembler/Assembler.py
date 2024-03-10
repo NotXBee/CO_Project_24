@@ -98,7 +98,8 @@ with open(abs_path + "CO_Project_24/automatedTesting/tests/assembly/user_bin_s/o
                 operation = text[0]
                 reg1 = text[1]
                 reg2 = text[2]
-                imm = binary(int(text[3]), 16)
+                imm = binary(int(text[3]), 12)
+                imm = imm[0] + imm
                 output += imm[-13] + imm[-11:-5]
                 output += rs(reg2)
                 output += rs(reg1)
@@ -121,7 +122,8 @@ with open(abs_path + "CO_Project_24/automatedTesting/tests/assembly/user_bin_s/o
             if text[0] in j_type :
                 operation = text[0]
                 dest = text[1]
-                imm = binary(int(text[2]), 24)
+                imm = binary(int(text[2]), 20)
+                imm = imm[0] + imm
                 output += imm[-21]
                 output += imm[-11:-1]
                 output += imm[-12]
