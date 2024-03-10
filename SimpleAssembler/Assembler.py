@@ -5,8 +5,7 @@ from utility import *
 
 abs_path = os.path.split(os.getcwd())[0] + '/' + os.path.split(os.getcwd())[1] + '/'
 
-
-with open(abs_path + "CO_Project_24/automatedTesting/tests/assembly/simpleBin/test3.txt") as f :
+with open(abs_path + "CO_Project_24/automatedTesting/tests/assembly/simpleBin/test4.txt") as f :
     lines = f.readlines()
     total_lines = len(lines)
     emptylines = []
@@ -14,7 +13,7 @@ with open(abs_path + "CO_Project_24/automatedTesting/tests/assembly/simpleBin/te
         if lines[i] == '\n' :
             emptylines.append(i+1)
 
-with open(abs_path + "CO_Project_24/automatedTesting/tests/assembly/user_bin_s/output3.txt", "w") as f :
+with open(abs_path + "CO_Project_24/automatedTesting/tests/assembly/user_bin_s/output4.txt", "w") as f :
     output = ""
     
     pc = 0
