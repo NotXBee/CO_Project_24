@@ -5,7 +5,7 @@ from utility import *
 
 abs_path = os.path.split(os.getcwd())[0] + '/' + os.path.split(os.getcwd())[1] + '/'
 
-with open(abs_path + "automatedTesting/tests/assembly/simpleBin/test1.txt") as f :
+with open(abs_path + "CO_Project_24/automatedTesting/tests/assembly/simpleBin/test2.txt") as f :
     lines = f.readlines()
     total_lines = len(lines)
     emptylines = []
@@ -13,7 +13,7 @@ with open(abs_path + "automatedTesting/tests/assembly/simpleBin/test1.txt") as f
         if lines[i] == '\n' :
             emptylines.append(i+1)
 
-with open(abs_path + "automatedTesting/tests/assembly/user_bin_s/output1.txt", "w") as f :
+with open(abs_path + "CO_Project_24/automatedTesting/tests/assembly/user_bin_s/output2.txt", "w") as f :
     output = ""
     pc = 0
     
@@ -21,7 +21,7 @@ with open(abs_path + "automatedTesting/tests/assembly/user_bin_s/output1.txt", "
         
         if pc+1 not in emptylines :
             
-            text = re.split("\(|\)\s|,|\n", lines[pc])
+            text = re.split("\(|\)|\s|,|\n", lines[pc])
             
             if text[0] in r_type : 
                 operation = text[0]
@@ -35,7 +35,6 @@ with open(abs_path + "automatedTesting/tests/assembly/user_bin_s/output1.txt", "
                 output += rs(dest)
                 output += opcode["r_type"]
                 output += '\n'
-                print(output)
 
             if text[0] in i_type :
                 if text[0] == "lw" :
@@ -125,8 +124,4 @@ with open(abs_path + "automatedTesting/tests/assembly/user_bin_s/output1.txt", "
 
         pc += 1
     
-
-
-        print(output)
-# f.write(output)
-        
+    f.write(output)
