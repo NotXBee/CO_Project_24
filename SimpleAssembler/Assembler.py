@@ -5,7 +5,7 @@ from utility import *
 
 abs_path = os.path.split(os.getcwd())[0] + '/' + os.path.split(os.getcwd())[1] + '/'
 
-with open(abs_path + "CO_Project_24/automatedTesting/tests/assembly/simpleBin/test1.txt") as f :
+with open(abs_path + "automatedTesting/tests/assembly/simpleBin/test1.txt") as f :
     lines = f.readlines()
     total_lines = len(lines)
     emptylines = []
@@ -13,7 +13,7 @@ with open(abs_path + "CO_Project_24/automatedTesting/tests/assembly/simpleBin/te
         if lines[i] == '\n' :
             emptylines.append(i+1)
 
-with open(abs_path + "CO_Project_24/automatedTesting/tests/assembly/user_bin_s/output1.txt", "w") as f :
+with open(abs_path + "automatedTesting/tests/assembly/user_bin_s/output1.txt", "w") as f :
     output = ""
     pc = 0
     
@@ -21,8 +21,7 @@ with open(abs_path + "CO_Project_24/automatedTesting/tests/assembly/user_bin_s/o
         
         if pc+1 not in emptylines :
             
-            # text = re.split("\s|,|\n|(|)", lines[pc])
-            text = ['jal', 'ra', '-48']
+            text = re.split("\(|\)\s|,|\n", lines[pc])
             
             if text[0] in r_type : 
                 operation = text[0]
@@ -36,12 +35,13 @@ with open(abs_path + "CO_Project_24/automatedTesting/tests/assembly/user_bin_s/o
                 output += rs(dest)
                 output += opcode["r_type"]
                 output += '\n'
+                print(output)
 
             if text[0] in i_type :
                 if text[0] == "lw" :
                     operation = text[0]
                     dest = text[1]
-                    imm = format(int(text[2]), '012b')
+                    imm = binary(int(text[2]), 12)
                     reg1 = text[3]
                     output += imm
                     output += rs(reg1)
@@ -52,7 +52,7 @@ with open(abs_path + "CO_Project_24/automatedTesting/tests/assembly/user_bin_s/o
                 if text[0] == "addi" :
                     operation = text[0]
                     dest = text[1]
-                    imm = format(int(text[3]), '012b')
+                    imm = binary(int(text[3]), 12)
                     reg1 = text[2]
                     output += imm
                     output += rs(reg1)
@@ -63,7 +63,7 @@ with open(abs_path + "CO_Project_24/automatedTesting/tests/assembly/user_bin_s/o
                 if text[0] == "sltiu" :
                     operation = text[0]
                     dest = text[1]
-                    imm = format(int(text[3]), '012b')
+                    imm = binary(int(text[3]), 12)
                     reg1 = text[2]
                     output += imm
                     output += rs(reg1)
@@ -74,7 +74,7 @@ with open(abs_path + "CO_Project_24/automatedTesting/tests/assembly/user_bin_s/o
                 if text[0] == "jalr" : # Note that this instruction has reg1 as x6 fixed. Please check this out while caring for errors
                     operation = text[0]
                     dest = text[1]
-                    imm = format(int(text[3]), '012b')
+                    imm = binary(int(text[3]), 12)
                     reg1 = text[2]
                     output += imm
                     output += rs(reg1)
@@ -85,7 +85,7 @@ with open(abs_path + "CO_Project_24/automatedTesting/tests/assembly/user_bin_s/o
             if text[0] in s_type :
                 operation = text[0]
                 reg2 = text[1]
-                imm = format(int(text[2]), '012b')
+                imm = binary(int(text[2]), 12)
                 reg1 = text[3]
                 output += imm[0:7]
                 output += rs(reg2)
@@ -98,7 +98,7 @@ with open(abs_path + "CO_Project_24/automatedTesting/tests/assembly/user_bin_s/o
                 operation = text[0]
                 reg1 = text[1]
                 reg2 = text[2]
-                imm = format(int(text[3]), '013b')
+                imm = binary(int(text[3]), 13)
                 output += imm[0] + imm[2:8]
                 output += rs(reg2)
                 output += rs(reg1)
@@ -110,12 +110,10 @@ with open(abs_path + "CO_Project_24/automatedTesting/tests/assembly/user_bin_s/o
             if text[0] in u_type :
                 operation = text[0]
                 dest = text[1]
-                imm = format(int(text[2]), "032b")
+                imm = binary(int(text[2]), 32)
                 output += imm[0:20]
                 output += rs(dest)
                 output += opcode[operation] + "\n"
-                print(output)
-                break
             
             if text[0] in j_type :
                 operation = text[0]
@@ -124,20 +122,11 @@ with open(abs_path + "CO_Project_24/automatedTesting/tests/assembly/user_bin_s/o
                 output += imm[0] + imm[10:20] + imm[9] + imm[1:9]
                 output += rs(dest)
                 output += opcode["j_type"] + "\n"
-                print(output)
-                break
 
         pc += 1
+    
 
-    # print(output)
-    # f.write(output)
+
+        print(output)
+# f.write(output)
         
-            
-
-
-        
-
-
-
-
-
