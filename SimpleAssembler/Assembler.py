@@ -21,7 +21,8 @@ with open(abs_path + "CO_Project_24/automatedTesting/tests/assembly/user_bin_s/o
         
         if pc+1 not in emptylines :
             
-            text = re.split("\s|,|\n", lines[pc])
+            # text = re.split("\s|,|\n|(|)", lines[pc])
+            text = ["jalr", "t4","t0","0"]
             
             if text[0] in r_type : 
                 operation = text[0]
@@ -35,6 +36,55 @@ with open(abs_path + "CO_Project_24/automatedTesting/tests/assembly/user_bin_s/o
                 output += rs(dest)
                 output += opcode["r_type"]
                 output += '\n'
+
+            if text[0] in i_type :
+                if text[0] == "lw" :
+                    operation = text[0]
+                    dest = text[1]
+                    imm = format(int(text[2]), '012b')
+                    reg1 = text[3]
+                    output += imm
+                    output += rs(reg1)
+                    output += funct3(operation)
+                    output += rs(dest)
+                    output += opcode["lw"] + '\n'
+                
+                if text[0] == "addi" :
+                    operation = text[0]
+                    dest = text[1]
+                    imm = format(int(text[3]), '012b')
+                    reg1 = text[2]
+                    output += imm
+                    output += rs(reg1)
+                    output += funct3(operation)
+                    output += rs(dest)
+                    output += opcode["addi"] + '\n'
+                
+                if text[0] == "sltiu" :
+                    operation = text[0]
+                    dest = text[1]
+                    imm = format(int(text[3]), '012b')
+                    reg1 = text[2]
+                    output += imm
+                    output += rs(reg1)
+                    output += funct3(operation)
+                    output += rs(dest)
+                    output += opcode["sltiu"] + '\n'
+                
+                if text[0] == "jalr" : # Note that this instruction has reg1 as x6 fixed. Please check this out while caring for errors
+                    operation = text[0]
+                    dest = text[1]
+                    imm = format(int(text[3]), '012b')
+                    reg1 = text[2]
+                    output += imm
+                    output += rs(reg1)
+                    output += funct3(operation)
+                    output += rs(dest)
+                    output += opcode["jalr"] + '\n'
+                    print(output)
+                    break
+
+
 
             if text[0] in b_type :
                 operation = text[0]
@@ -51,7 +101,7 @@ with open(abs_path + "CO_Project_24/automatedTesting/tests/assembly/user_bin_s/o
             
         pc += 1
 
-    print(output)
+    # print(output)
     # f.write(output)
         
             
