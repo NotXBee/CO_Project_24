@@ -40,7 +40,8 @@ with open(abs_path + "CO_Project_24/automatedTesting/tests/assembly/user_bin_s/o
             output += imm[8:12] + imm[1]
             output += opcode["b_type"]
             output += '\n'
-            
+    
+    # f.write(output)
         
             
 
