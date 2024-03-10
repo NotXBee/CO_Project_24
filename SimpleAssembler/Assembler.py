@@ -93,8 +93,8 @@ with open(abs_path + "CO_Project_24/automatedTesting/tests/assembly/user_bin_s/o
                 output += funct3(operation)
                 output += imm[7:]
                 output += opcode["s_type"] + '\n'
-
-            if text[0] in b_type :
+            
+            if text[0] in b_type : # Please ask the TA how the immediate part is parsed. I am still not sure I am doing it the right way although the output is correct.
                 operation = text[0]
                 reg1 = text[1]
                 reg2 = text[2]
@@ -106,7 +106,7 @@ with open(abs_path + "CO_Project_24/automatedTesting/tests/assembly/user_bin_s/o
                 output += imm[8:12] + imm[1]
                 output += opcode["b_type"]
                 output += '\n'
-            
+              
         pc += 1
 
     # print(output)
