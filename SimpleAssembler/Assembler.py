@@ -22,7 +22,7 @@ with open(abs_path + "CO_Project_24/automatedTesting/tests/assembly/user_bin_s/o
         if pc+1 not in emptylines :
             
             # text = re.split("\s|,|\n|(|)", lines[pc])
-            text = ["sw","t5","200","gp"]
+            text = ['jal', 'ra', '-48']
             
             if text[0] in r_type : 
                 operation = text[0]
@@ -106,7 +106,27 @@ with open(abs_path + "CO_Project_24/automatedTesting/tests/assembly/user_bin_s/o
                 output += imm[8:12] + imm[1]
                 output += opcode["b_type"]
                 output += '\n'
-              
+
+            if text[0] in u_type :
+                operation = text[0]
+                dest = text[1]
+                imm = format(int(text[2]), "032b")
+                output += imm[0:20]
+                output += rs(dest)
+                output += opcode[operation] + "\n"
+                print(output)
+                break
+            
+            if text[0] in j_type :
+                operation = text[0]
+                dest = text[1]
+                imm = binary(int(text[2]), 21)
+                output += imm[0] + imm[10:20] + imm[9] + imm[1:9]
+                output += rs(dest)
+                output += opcode["j_type"] + "\n"
+                print(output)
+                break
+
         pc += 1
 
     # print(output)

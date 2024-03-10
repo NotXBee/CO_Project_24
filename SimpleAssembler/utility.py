@@ -135,3 +135,20 @@ def funct3(operation) :
 
 def rs(register) :
     return register_address[register]
+
+# def binary(decimal_num, num_bits):
+#     if decimal_num >= 0:
+#         return format(decimal_num, '0' + str(num_bits) + 'b')
+#     else:
+#         positive_binary = format(decimal_num & ((1 << num_bits) - 1), '0' + str(num_bits) + 'b')
+#         inverted_binary = ''.join('1' if bit == '0' else '0' for bit in positive_binary)
+#         inverted_decimal = int(inverted_binary, 2) + 1
+#         return format(inverted_decimal, '0' + str(num_bits) + 'b')
+    
+def binary(int, no_of_bits) :
+    if int >= 0 :
+        return format(int, f'0{no_of_bits}b')
+    
+    return format((1 << no_of_bits) + int, f'0{no_of_bits}b')
+
+print(binary(-7, 5))
