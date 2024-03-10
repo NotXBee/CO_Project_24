@@ -94,16 +94,16 @@ with open(abs_path + "CO_Project_24/automatedTesting/tests/assembly/user_bin_s/o
                 output += imm[7:]
                 output += opcode["s_type"] + '\n'
             
-            if text[0] in b_type : # Please ask the TA how the immediate part is parsed. I am still not sure I am doing it the right way although the output is correct.
+            if text[0] in b_type : 
                 operation = text[0]
                 reg1 = text[1]
                 reg2 = text[2]
-                imm = binary(int(text[3]), 13)
-                output += imm[0] + imm[2:8]
+                imm = binary(int(text[3]), 16)
+                output += imm[-13] + imm[-11:-5]
                 output += rs(reg2)
                 output += rs(reg1)
                 output += funct3(operation)
-                output += imm[8:12] + imm[1]
+                output += imm[-5:-1] + imm[-12]
                 output += opcode["b_type"]
                 output += '\n'
             
@@ -121,7 +121,7 @@ with open(abs_path + "CO_Project_24/automatedTesting/tests/assembly/user_bin_s/o
             if text[0] in j_type :
                 operation = text[0]
                 dest = text[1]
-                imm = binary(int(text[2]), 21)
+                imm = binary(int(text[2]), 24)
                 output += imm[-21]
                 output += imm[-11:-1]
                 output += imm[-12]
@@ -130,10 +130,9 @@ with open(abs_path + "CO_Project_24/automatedTesting/tests/assembly/user_bin_s/o
                 output += opcode["j_type"] + '\n'
             
         pc += 1
-    
+        
     output = output[:-1]
     f.write(output)
-        
             
 
 
