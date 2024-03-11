@@ -24,8 +24,11 @@ with open(abs_path + "automatedTesting/tests/assembly/simpleBin/test1.txt") as f
 
 with open(abs_path + "automatedTesting/tests/assembly/user_bin_s/output1.txt", "w") as f :
     output = ""
+    
     pc = 0
     
+    # Note that all the error types can be inferred from section 8.1.1 of the CO_Project_2024_v8 pdf
+
     while pc < total_lines :
         error = 0
         

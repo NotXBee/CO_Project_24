@@ -135,14 +135,22 @@ def funct3(operation) :
 
 def rs(register) :
     return register_address[register]
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> main
 def binary(int, no_of_bits) :
     if int >= 0 :
         return format(int, f'0{no_of_bits}b')
     
+<<<<<<< HEAD
     return format((1 << no_of_bits) + int, f'0{no_of_bits}b')
 
 def crange(num, bits):
     if num < (-(2**(bits-1))) or num > ((2**(bits-1))-1) :
         return False
     return True
+=======
+    return format((1 << no_of_bits) + int, f'0{no_of_bits}b')
+>>>>>>> main
