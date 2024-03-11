@@ -217,6 +217,7 @@ with open(output_file, "w") as f :
                                     
             
             elif text[0] in b_type : 
+                operation = text[0]
                 addinfo = text[1].split(',')
                 if len(addinfo) != 3 :
                     print(f'Missing comma in line {pc+1}')
