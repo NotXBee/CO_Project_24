@@ -1,11 +1,10 @@
-import os
-import pprint
-import re
+import sys
 from utility import *
 
-abs_path = os.path.split(os.getcwd())[0] + '/' + os.path.split(os.getcwd())[1] + '/'
+input_file = sys.argv[1]
+output_file = sys.argv[2]
 
-with open(abs_path + "automatedTesting/tests/assembly/simpleBin/test1.txt") as f :
+with open(input_file) as f :
     lines = f.readlines()
     total_lines = len(lines)
     emptylines = []
@@ -22,7 +21,7 @@ with open(abs_path + "automatedTesting/tests/assembly/simpleBin/test1.txt") as f
             lines[i] = labeltemp[1]
         
 
-with open(abs_path + "automatedTesting/tests/assembly/user_bin_s/output1.txt", "w") as f :
+with open(output_file, "w") as f :
     output = ""
     pc = 0
     
