@@ -184,11 +184,26 @@ with open(abs_path + "CO_Project_24/automatedTesting/tests/assembly/user_bin_s/o
 
             elif text[0] in u_type :
                 operation = text[0]
-                dest = text[1]
-                imm = binary(int(text[2]), 32)
-                output += imm[0:20]
-                output += rs(dest)
-                output += opcode[operation] + "\n"
+                addinfo = text[1].split(',')
+                if len(addinfo) < 2 :
+                    output = f'Missing comma in line {pc+1}\n'
+                else:
+                    if addinfo[0] not in register_address:
+                        output = f'Invalid register in line {pc+1}\n'
+                        error = 1
+                        break
+                    else:
+                        dest = addinfo[0]
+                        imm = binary(int(addinfo[1]), 32)
+                        if not imm.isdigit():
+                            output = f'Incorrect type immediate in line {pc+1}\n'
+                        elif not crange(int(imm), 12) :
+                            output = f'Illegal Immediate in line {pc+1}\n'
+                        else :
+                            output += imm[0:20]
+                            output += rs(dest)
+                            output += opcode[operation] + "\n"
+                            
             
             elif text[0] in j_type :
                 operation = text[0]
