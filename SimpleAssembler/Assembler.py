@@ -123,7 +123,7 @@ with open(output_file, "w") as f :
                             output = ''
                             break
                         elif addinfo[2] in labels:
-                            imed = 4*pc - labels[addinfo[2]]
+                            imed = labels[addinfo[2]] - 4*pc
                         else :
                             if not crange(int(addinfo[2]), 12):
                                 print(f'Illegal immediate in line {pc+1}')
@@ -229,7 +229,7 @@ with open(output_file, "w") as f :
                         output = ''
                         break
                     elif addinfo[2] in labels:
-                        imed = 4*pc - labels[addinfo[2]]
+                        imed = labels[addinfo[2]] - 4*pc
                     else :
                         if not crange(int(addinfo[2]), 12):
                             print(f'Illegal immediate in line {pc+1}')
@@ -296,7 +296,7 @@ with open(output_file, "w") as f :
                         output = ''
                         break
                     elif addinfo[1] in labels:
-                        imed = 4*pc - labels[addinfo[1]]
+                        imed = labels[addinfo[1]] - 4*pc
                     else :
                         if not crange(int(addinfo[1]), 21):
                             print(f'Illegal immediate in line {pc+1}')
