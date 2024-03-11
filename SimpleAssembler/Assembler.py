@@ -18,6 +18,8 @@ with open(abs_path + "CO_Project_24/automatedTesting/tests/assembly/user_bin_s/o
     
     pc = 0
     
+    # Note that all the error types can be inferred from section 8.1.1 of the CO_Project_2024_v8 pdf
+
     while pc < total_lines :
         
         if pc+1 not in emptylines :
