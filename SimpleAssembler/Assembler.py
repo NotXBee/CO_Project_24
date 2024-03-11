@@ -107,15 +107,36 @@ with open(abs_path + "CO_Project_24/automatedTesting/tests/assembly/user_bin_s/o
             
             elif text[0] in s_type :
                 operation = text[0]
-                reg2 = text[1]
-                imm = binary(int(text[2]), 12)
-                reg1 = text[3]
-                output += imm[0:7]
-                output += rs(reg2)
-                output += rs(reg1)
-                output += funct3(operation)
-                output += imm[7:]
-                output += opcode["s_type"] + '\n'
+                addinfo = text[1].split(',')
+                if len(addinfo) < 2 :
+                    output = f'Missing comma in line {pc+1}\n'
+                else:
+                    temp = addinfo[1].split('(')
+                    if len(temp) < 2 :
+                       output = f'Missing starting bracket in line {pc+1}\n'
+                    else:
+                        addinfo[1] = temp[0]
+                        if temp[1].rstrip(')') == temp[1] :
+                            output = f'Missing ending bracket in line {pc+1}\n'
+                        else:
+                            addinfo.append(temp[1].rstrip(')'))
+                            reg2 = addinfo[0]
+                            imed = addinfo[1]
+                            reg1 = addinfo[2]
+                            if not imed.isdigit():
+                                output = f'Incorrect type immediate in line {pc+1}\n'
+                            elif not crange(int(imed), 12) :
+                                output = f'Illegal Immediate in line {pc+1}\n'
+                            else:
+                                imm = binary(int(imed), 12)
+                                output += imm[0:7]
+                                output += rs(reg2)
+                                output += rs(reg1)
+                                output += funct3(operation)
+                                output += imm[7:]
+                                output += opcode["s_type"] + '\n'
+                                    
+                    print(output)
             
             elif text[0] in b_type : # Please ask the TA how the immediate part is parsed. I am still not sure I am doing it the right way although the output is correct.
                 operation = text[0]
