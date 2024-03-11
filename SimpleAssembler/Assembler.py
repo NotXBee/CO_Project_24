@@ -5,14 +5,27 @@ from utility import *
 
 abs_path = os.path.split(os.getcwd())[0] + '/' + os.path.split(os.getcwd())[1] + '/'
 
-with open(abs_path + "CO_Project_24/automatedTesting/tests/assembly/simpleBin/test2.txt") as f :
-    # lines = f.readlines()
-    lines = ['sltiu s5,a2,10']
+with open(abs_path + "automatedTesting/tests/assembly/simpleBin/test3.txt") as f :
+    lines = f.readlines()
+    # print(lines)
+    # lines = ['sltiu s5,a2,10']
     total_lines = len(lines)
     emptylines = []
+    labels = {}
+    labellines = []
     for i in range(len(lines)) :
+        lines[i] = lines[i].lstrip()
         if lines[i] == '\n' :
             emptylines.append(i+1)
+        lines[i] = lines[i].rstrip('\n')
+        labeltemp = lines[i].split(': ')
+        if len(labeltemp) == 2:
+            labels[labeltemp[0]] = 4*i
+            lines[i] = labeltemp[1]
+
+    print(lines)
+    print(labels)
+        
 
 with open(abs_path + "CO_Project_24/automatedTesting/tests/assembly/user_bin_s/output2.txt", "w") as f :
     output = ""
@@ -140,27 +153,79 @@ with open(abs_path + "CO_Project_24/automatedTesting/tests/assembly/user_bin_s/o
             
             elif text[0] in b_type : # Please ask the TA how the immediate part is parsed. I am still not sure I am doing it the right way although the output is correct.
                 operation = text[0]
-                reg1 = text[1]
-                reg2 = text[2]
-                imm = binary(int(text[3]), 13)
-                output += imm[0] + imm[2:8]
-                output += rs(reg2)
-                output += rs(reg1)
-                output += funct3(operation)
-                output += imm[8:12] + imm[1]
-                output += opcode["b_type"]
-                output += '\n'
+                addinfo = text[1].split(',')
+                if len(addinfo) < 3 :
+                    output = f'Missing comma in line {pc+1}\n'
+                else:
+                    for i in range(2):
+                        if addinfo[i] not in register_address:
+                            output = f'Invalid register in line {pc+1}\n'
+                            error = 1
+                            break
+                    if addinfo[2] not in labels or not addinfo[2].isdigit():
+                        output = f'Invalid Label in line {pc+1}\n'
+                        error = 1
+                    if not error:
+                        if addinfo[2] in labels:
+                            imed = labels[addinfo[2]] - 4*pc
+                        else :
+                            if not crange(addinfo[2], 12):
+                                output = f'Illegal immediate in line {pc+1}\n'
+                                error = 1
+                            else:
+                                imed = addinfo[2]
+                        if not error:
+                            reg1 = addinfo[0]
+                            reg2 = addinfo[1]
+                            imm = binary(int(imed), 12)
+                            output += imm[0] + imm[2:8]
+                            output += rs(reg2)
+                            output += rs(reg1)
+                            output += funct3(operation)
+                            output += imm[8:] + imm[1]
+                            output += opcode["b_type"]
+                            output += '\n'
+                print(output)
 
             elif text[0] in u_type :
                 operation = text[0]
-                dest = text[1]
-                imm = binary(int(text[2]), 32)
-                output += imm[0:20]
-                output += rs(dest)
-                output += opcode[operation] + "\n"
+                addinfo = text[1].split(',')
+                if len(addinfo) < 2 :
+                    output = f'Missing comma in line {pc+1}\n'
+                else:
+                    if addinfo[0] not in register_address :
+                        output = f'Invalid register in line {pc+1}\n'
+                    elif addinfo[1].isdigit():
+                        output = f'Invalid immmediate in line {pc+1}\n'
+                    elif not crange(addinfo[1], 32):
+                        output = f'Illegal immediate in line {pc+1}\n'
+                    else:
+                        dest = addinfo[0]
+                        imm = binary(int(addinfo[1]), 32)
+                        output += imm[0:20]
+                        output += rs(dest)
+                        output += opcode[operation] + "\n"
             
             elif text[0] in j_type :
                 operation = text[0]
+                addinfo = text[1].split(',')
+                if len(addinfo) < 2 :
+                    output = f'Missing comma in line {pc+1}\n'
+                else:
+                    if addinfo[0] not in register_address :
+                        output = f'Invalid register in line {pc+1}\n'
+                    elif addinfo[1].isdigit():
+                        output = f'Invalid immmediate in line {pc+1}\n'
+                    elif not crange(addinfo[1], 32):
+                        output = f'Illegal immediate in line {pc+1}\n'
+                    else:
+                        dest = addinfo[0]
+                        imm = binary(int(addinfo[1]), 32)
+                        output += imm[0:20]
+                        output += rs(dest)
+                        output += opcode[operation] + "\n"
+
+                        
                 dest = text[1]
                 imm = binary(int(text[2]), 21)
                 output += imm[0] + imm[10:20] + imm[9] + imm[1:9]
