@@ -5,7 +5,7 @@ from utility import *
 
 abs_path = os.path.split(os.getcwd())[0] + '/' + os.path.split(os.getcwd())[1] + '/'
 
-with open(abs_path + "automatedTesting/tests/assembly/simpleBin/test5.txt") as f :
+with open(abs_path + "automatedTesting/tests/assembly/simpleBin/test1.txt") as f :
     lines = f.readlines()
     total_lines = len(lines)
     emptylines = []
@@ -22,7 +22,7 @@ with open(abs_path + "automatedTesting/tests/assembly/simpleBin/test5.txt") as f
             lines[i] = labeltemp[1]
         
 
-with open(abs_path + "automatedTesting/tests/assembly/user_bin_s/output5.txt", "w") as f :
+with open(abs_path + "automatedTesting/tests/assembly/user_bin_s/output1.txt", "w") as f :
     output = ""
     pc = 0
     
@@ -36,7 +36,7 @@ with open(abs_path + "automatedTesting/tests/assembly/user_bin_s/output5.txt", "
             if text[0] in r_type : 
                 operation = text[0]
                 regs = text[1].split(',')
-                if len(regs) < 3 :
+                if len(regs) != 3 :
                     print(f'Missing comma in line {pc+1}')
                     output = ''
                     break
@@ -65,13 +65,13 @@ with open(abs_path + "automatedTesting/tests/assembly/user_bin_s/output5.txt", "
                 operation = text[0]
                 if operation == "lw" :
                     addinfo = text[1].split(',')
-                    if len(addinfo) < 2 :
+                    if len(addinfo) != 2 :
                         print(f'Missing comma in line {pc+1}')
                         output = ''
                         break
                     else:
                         temp = addinfo[1].split('(')
-                        if len(temp) < 2 :
+                        if len(temp) != 2 :
                             print(f'Missing starting bracket in line {pc+1}')
                             output = ''
                             break
@@ -108,7 +108,7 @@ with open(abs_path + "automatedTesting/tests/assembly/user_bin_s/output5.txt", "
                                     
                 elif operation == 'jalr':
                     addinfo = text[1].split(',')
-                    if len(addinfo) < 3 :
+                    if len(addinfo) != 3 :
                         print(f'Missing comma in line {pc+1}')
                         output = ''
                         break
@@ -142,7 +142,7 @@ with open(abs_path + "automatedTesting/tests/assembly/user_bin_s/output5.txt", "
 
                 else:
                     addinfo = text[1].split(',')
-                    if len(addinfo) < 3 :
+                    if len(addinfo) != 3 :
                         print(f'Missing comma in line {pc+1}')
                         output = ''
                         break
@@ -174,13 +174,13 @@ with open(abs_path + "automatedTesting/tests/assembly/user_bin_s/output5.txt", "
             elif text[0] in s_type :
                 operation = text[0]
                 addinfo = text[1].split(',')
-                if len(addinfo) < 2 :
+                if len(addinfo) != 2 :
                     print(f'Missing comma in line {pc+1}')
                     output = ''
                     break
                 else:
                     temp = addinfo[1].split('(')
-                    if len(temp) < 2 :
+                    if len(temp) != 2 :
                        print(f'Missing starting bracket in line {pc+1}')
                        output = ''
                        break
@@ -220,7 +220,7 @@ with open(abs_path + "automatedTesting/tests/assembly/user_bin_s/output5.txt", "
             elif text[0] in b_type : # Please ask the TA how the immediate part is parsed. I am still not sure I am doing it the right way although the output is correct.
                 operation = text[0]
                 addinfo = text[1].split(',')
-                if len(addinfo) < 3 :
+                if len(addinfo) != 3 :
                     print(f'Missing comma in line {pc+1}')
                     output = ''
                     break
@@ -256,7 +256,7 @@ with open(abs_path + "automatedTesting/tests/assembly/user_bin_s/output5.txt", "
             elif text[0] in u_type :
                 operation = text[0]
                 addinfo = text[1].split(',')
-                if len(addinfo) < 2 :
+                if len(addinfo) != 2 :
                     print(f'Missing comma in line {pc+1}')
                     output = ''
                     break
@@ -283,7 +283,7 @@ with open(abs_path + "automatedTesting/tests/assembly/user_bin_s/output5.txt", "
             elif text[0] in j_type :
                 operation = text[0]
                 addinfo = text[1].split(',')
-                if len(addinfo) < 2 :
+                if len(addinfo) != 2 :
                     print(f'Missing comma in line {pc+1}')
                     output = ''
                     break
