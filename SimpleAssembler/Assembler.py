@@ -24,11 +24,8 @@ with open(abs_path + "automatedTesting/tests/assembly/simpleBin/test1.txt") as f
 
 with open(abs_path + "automatedTesting/tests/assembly/user_bin_s/output1.txt", "w") as f :
     output = ""
-    
     pc = 0
     
-    # Note that all the error types can be inferred from section 8.1.1 of the CO_Project_2024_v8 pdf
-
     while pc < total_lines :
         error = 0
         
@@ -220,8 +217,7 @@ with open(abs_path + "automatedTesting/tests/assembly/user_bin_s/output1.txt", "
                                 output += opcode["s_type"] + '\n'
                                     
             
-            elif text[0] in b_type : # Please ask the TA how the immediate part is parsed. I am still not sure I am doing it the right way although the output is correct.
-                operation = text[0]
+            elif text[0] in b_type : 
                 addinfo = text[1].split(',')
                 if len(addinfo) != 3 :
                     print(f'Missing comma in line {pc+1}')
