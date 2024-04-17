@@ -13,6 +13,9 @@ if type(i) == "add": # verified
     registers[rd] = registers[rs2] + registers[rs1]
     pc+=4
 
+<<<<<<< HEAD
+#B type    
+=======
 if type(i) == "sub" :
     rs2 = i[-25:-20]
     rs1 = i[-20:-15]
@@ -75,6 +78,7 @@ if type(i) == "and" : # verified
 
 
 # B type
+>>>>>>> main
 if type(i) == "beq":
     imm = i[-32]+i[-8]+i[-31:-25]+i[-12:-8]
     rs2 = i[-25:-20]
@@ -106,8 +110,7 @@ if type(i) == "bgeu":
     imm = i[-32]+i[-8]+i[-31:-25]+i[-12:-8]
     rs2 = i[-25:-20]
     rs1 = i[-20:-15]
-    #Needs function
-    if registers[rs1] >= registers[rs2]:
+    if unsigned(registers[rs1]) >= unsigned(registers[rs2]):
         pc += int(imm)*2
     else:
         pc += 4
@@ -116,7 +119,6 @@ if type(i) == "blt":
     imm = i[-32]+i[-8]+i[-31:-25]+i[-12:-8]
     rs2 = i[-25:-20]
     rs1 = i[-20:-15]
-    #needs function
     if registers[rs1] < registers[rs2]:
         pc += int(imm)*2
     else:
@@ -126,8 +128,7 @@ if type(i) == "bltu":
     imm = i[-32]+i[-8]+i[-31:-25]+i[-12:-8]
     rs2 = i[-25:-20]
     rs1 = i[-20:-15]
-    #Needs function
-    if registers[rs1] < registers[rs2]:
+    if unsigned(registers[rs1]) < unsigned(registers[rs2]):
         pc += int(imm)*2
     else:
         pc += 4
@@ -167,6 +168,15 @@ if type(i) == "jalr":
     if (pc%2):
         pc -= 1
 
+#S type
+if type(i) == "s_type":
+    
+    imm = i[-32:-25]+i[-12:-7]
+    rs2 = i[-25:-20]
+    rs1 = i[-20:-15]
+    temp = registers[rs1] + binaryToDecimal(int(imm))
+    memory[hexadecimal(temp)] = registers[rs2]
+    pc += 4
 
 print("0b"+binary(pc),end=" ")
 for i in registers.values():
