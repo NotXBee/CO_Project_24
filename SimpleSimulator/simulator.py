@@ -1,9 +1,13 @@
+import sys
 from helper import *
 
-with open("automatedTesting/tests/bin/simple/s_test2.txt","r") as f:
+input_file = sys.argv[1]
+output_file = sys.argv[2]
+
+with open(input_file) as f:
     txt = f.read().split("\n")
 
-with open("automatedTesting/tests/user_traces/s_test2.txt","w") as f:
+with open(output_file,"w") as f:
     output = ""
     while True:
         
