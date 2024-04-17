@@ -215,7 +215,7 @@ with open(output_file,"w") as f:
             rd = i[-12:-7]
             rs1 = i[-20:-15]
             rs2 = i[-25:-20]
-            registers[rd] = registers[rs1] * registers[rs2]
+            registers[rd] = registers[rs1] * registers[rs2] if (rd!='00000') else 0
             pc += 4
         
         if type(i) == "rst" :
@@ -226,7 +226,14 @@ with open(output_file,"w") as f:
             break
 
         if type(i) == "rvrs" :
-            pass
+            rd = i[-12:-7]
+            rs = i[-20:-15]
+            t1 = binary(registers[rs])
+            t1 = t1[::-1]
+            t1 = twos_complement(t1)
+            registers[rd] = t1 if (rd!='00000') else 0
+            pc += 4
+
 
         registers['00000'] = 0
         output += "0b"+binary(pc) + " "
