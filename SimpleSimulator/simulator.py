@@ -1,9 +1,9 @@
 from helper import *
 
-with open("automatedTesting/tests/bin/simple/s_test5.txt","r") as f:
+with open("automatedTesting/tests/bin/simple/s_test2.txt","r") as f:
     txt = f.read().split("\n")
 
-with open("automatedTesting/tests/user_traces/s_test5.txt","w") as f:
+with open("automatedTesting/tests/user_traces/s_test2.txt","w") as f:
     output = ""
     while True:
         
@@ -29,7 +29,7 @@ with open("automatedTesting/tests/user_traces/s_test5.txt","w") as f:
             rs1 = i[-20:-15]
             rd = i[-12:-7]
             temp = registers[rs2] % 32
-            registers[rd] = registers[rd](2*temp) if (rd!='00000') else 0
+            registers[rd] = registers[rd]*(2**temp) if (rd!='00000') else 0
             pc += 4
 
         if type(i) == "slt" :

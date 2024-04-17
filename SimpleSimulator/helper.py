@@ -149,7 +149,7 @@ def s_type(i):
         return "s_type"
 
 def j_type(i):
-    return "jal"
+    return "j_type"
 
 def lw(i):
     fun3 = i[-15:-12]
