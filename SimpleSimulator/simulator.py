@@ -11,7 +11,64 @@ if type(i) == "add":
     rd = i[-12:-7]
     registers[rd] = registers[rs2] + registers[rs1]
     pc+=4
+    
+if type(i) == "beq":
+    imm = i[-32]+i[-8]+i[-31:-25]+i[-12:-8]
+    rs2 = i[-25:-20]
+    rs1 = i[-20:-15]
+    if registers[rs1] == registers[rs2]:
+        pc += int(imm)*2
+    else:
+        pc += 4
 
+if type(i) == "bne":
+    imm = i[-32]+i[-8]+i[-31:-25]+i[-12:-8]
+    rs2 = i[-25:-20]
+    rs1 = i[-20:-15]
+    if registers[rs1] != registers[rs2]:
+        pc += int(imm)*2
+    else:
+        pc += 4
+
+if type(i) == "bge":
+    imm = i[-32]+i[-8]+i[-31:-25]+i[-12:-8]
+    rs2 = i[-25:-20]
+    rs1 = i[-20:-15]
+    if registers[rs1] >= registers[rs2]:
+        pc += int(imm)*2
+    else:
+        pc += 4
+
+if type(i) == "bgeu":
+    imm = i[-32]+i[-8]+i[-31:-25]+i[-12:-8]
+    rs2 = i[-25:-20]
+    rs1 = i[-20:-15]
+    #Needs function
+    if registers[rs1] >= registers[rs2]:
+        pc += int(imm)*2
+    else:
+        pc += 4
+
+if type(i) == "blt":
+    imm = i[-32]+i[-8]+i[-31:-25]+i[-12:-8]
+    rs2 = i[-25:-20]
+    rs1 = i[-20:-15]
+    #needs function
+    if registers[rs1] < registers[rs2]:
+        pc += int(imm)*2
+    else:
+        pc += 4
+        
+if type(i) == "bltu":
+    imm = i[-32]+i[-8]+i[-31:-25]+i[-12:-8]
+    rs2 = i[-25:-20]
+    rs1 = i[-20:-15]
+    #Needs function
+    if registers[rs1] < registers[rs2]:
+        pc += int(imm)*2
+    else:
+        pc += 4
+        
 if type(i) == "sub" :
     rs2 = i[-25:-20]
     rs1 = i[-20:-15]
