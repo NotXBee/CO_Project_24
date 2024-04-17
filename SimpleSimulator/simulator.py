@@ -214,8 +214,6 @@ with open("automatedTesting/tests/user_traces/s_test5.txt","w") as f:
             break
         if pc == 0:
             break
-        #if pc//4 == 17:
-        #    break
     for i,j in memory.items():
         output += f"{i.lower()}:0b{binary(j)}" + "\n"
     
