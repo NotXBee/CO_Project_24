@@ -1,10 +1,11 @@
 from helper import *
 
-with open("CO_Project_24/automatedTesting/tests/bin/simple/s_test1.txt","r") as f:
+with open("automatedTesting/tests/bin/simple/s_test1.txt","r") as f:
     txt = f.read().split("\n")
 
 i = txt[4]
 
+# R type
 if type(i) == "add":
     rs2 = i[-25:-20]
     rs1 = i[-20:-15]
@@ -35,6 +36,22 @@ if type(i) == "slt" :
         registers[rd] = 1
     pc += 4
 
+if type(i) == "sltu" :
+    rs2 = i[-25:-20]
+    rs1 = i[-20:-15]
+    rd = i[-12:-7]
+    if (unsigned(registers[rs1]) < unsigned(registers[rs2])) :
+        registers[rd] = 1
+    pc += 4
+
+if type(i) == "xor" :
+    rs2 = i[-25:-20]
+    rs1 = i[-20:-15]
+    rd = i[-12:-7]
+
+
+
+# I type
 if type(i) == "lw":
     pc+=4
     rs1 = i[-20:-15]
