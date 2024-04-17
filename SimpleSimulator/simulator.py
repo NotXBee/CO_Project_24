@@ -1,4 +1,4 @@
-with open("automatedTesting/tests/bin/simple/s_test1.txt","r") as f:
+with open("automatedTesting\\tests\\bin\\simple\\s_test1.txt","r") as f:
     txt = f.read().split("\n")
 
 i = txt[0]
@@ -12,6 +12,7 @@ opcode_dict = {"0110011" : "r_type",
                "1100111" : "jalr", 
                "0110111" : "lui", 
                "0010111" : "auipc"}
+
 
 def binary(int, no_of_bits = 32) :
     if int >= 0 :
@@ -27,7 +28,7 @@ def hexadecimal(int_value, no_of_digits=8):
 registers = {
     "00000" : 0b00000000000000000000000000000000,
 	"00001" : 0b00000000000000000000000000000000,
-	"00010" : 0b00000000000000000000000000000000,
+	"00010" : 0b00000000000000000000000100000000,
 	"00011" : 0b00000000000000000000000000000000,
 	"00100" : 0b00000000000000000000000000000000,
 	"00101" : 0b00000000000000000000000000000000,
@@ -102,8 +103,8 @@ def opcode(i):
     return opcode_dict[opcode3]
 
 def r_type(i):
-    fun7 = i[0:7]
-    fun3 = i[17:20]
+    fun7 = i[-32:-25]
+    fun3 = i[-15:-12]
     if fun3 == "000":
         if fun7 == "0000000":
             return "add"
@@ -125,7 +126,7 @@ def r_type(i):
         return "and"
 
 def b_type(i):
-    fun3 = i[17:20]
+    fun3 = i[-15:-12]
     if fun3 == "000":
         return "beq"
     if fun3 == "001":
@@ -140,7 +141,7 @@ def b_type(i):
         return "bgeu"
     
 def s_type(i):
-    fun3 = i[17:20]
+    fun3 = i[-15:-12]
     if fun3 == "010":
         return "sw"
 
@@ -148,18 +149,18 @@ def j_type(i):
     return "jal"
 
 def lw(i):
-    fun3 = i[17:20]
+    fun3 = i[-15:-12]
     if fun3 == "010":
         return "lw"
 def addi_sltiu(i):
-    fun3 = i[17:20]
+    fun3 = i[-15:-12]
     if fun3 == "000":
         return "addi"
     if fun3 == "011":
         return "sltiu"
 
 def jalr(i):
-    fun3 = i[17:20]
+    fun3 = i[-15:-12]
     if fun3 == "000":
         return "jalr"
 def lui(i):
@@ -190,4 +191,14 @@ def type(i):
         return lui(i)
     if type == "auipc":
         return auipc(i)
-    
+
+if type(i) == "add":
+    rs2 = i[-25:-20]
+    rs1 = i[-20:-15]
+    rd = i[-12:-7]
+    registers[rd] = registers[rs2] + registers[rs1]
+    pc+=4
+print("0b"+binary(pc),end=" ")
+for i in registers.values():
+    print("0b"+binary(i),end=" ")
+print()
