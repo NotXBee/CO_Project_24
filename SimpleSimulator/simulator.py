@@ -75,11 +75,7 @@ if type(i) == "and" : # verified
 
 
 # B type
-<<<<<<< HEAD
-if type(i) == "beq":  # verified
-=======
 if type(i) == "beq":
->>>>>>> dc0e4f418e2adf3caa1b610f386e0c25045c7ea4
     imm = i[-32]+i[-8]+i[-31:-25]+i[-12:-8]
     rs2 = i[-25:-20]
     rs1 = i[-20:-15]
