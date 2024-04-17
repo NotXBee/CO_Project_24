@@ -309,6 +309,57 @@ with open(output_file, "w") as f :
                     output += imm[0] + imm[10:20] + imm[9] + imm[1:9]
                     output += rs(dest)
                     output += opcode["j_type"] + "\n"
+            
+            elif text[0] in bonus:
+                operation = text[0]
+                if operation == "mul":
+                    addinfo = text[1].split(',')
+                    if len(addinfo) != 3:
+                        print(f'Missing comma in line {pc+1}')
+                        output = ''
+                        break
+                    else:
+                        if (addinfo[0], addinfo[1], addinfo[2]) not in register_address:
+                            print(f'Invalid register in line {pc+1}')
+                            output = ''
+                            break
+                        opc = "1111111"
+                        dest = addinfo[0]
+                        source1 = addinfo[1]
+                        source2 = addinfo[2]
+                        output += "0"*7
+                        output += rs(source2) + rs(source1)
+                        output += '0'*3
+                        output += rs(dest)
+                        output += opc + "\n"
+                
+                elif operation == "rst":
+                    output += '0'*25
+                    output += "1111110" + '\n'
+
+                elif operation == "halt":
+                    output += '0'*25
+                    output += "1111101" + '\n'
+
+                elif operation == "rvrs":
+                    addinfo = text[1].split(',')
+                    if len(addinfo) != 2:
+                        print(f'Missing comma in line {pc+1}')
+                        output = ''
+                        break
+                    else:
+                        if (addinfo[0], addinfo[1]) not in register_address:
+                            print(f'Invalid register in line {pc+1}')
+                            output = ''
+                            break
+                        opc = "1111011"
+                        dest = addinfo[0]
+                        source1 = addinfo[1]
+                        output += '0'*12
+                        output += rs(source1)
+                        output += '0'*3
+                        output += rs(dest)
+                        output += opc + '\n'
 
             else :
                 print(f'Invalid Instruction in line number {pc+1}')
