@@ -6,6 +6,7 @@ with open("automatedTesting/tests/bin/simple/s_test1.txt","r") as f:
 with open("automatedTesting/tests/user_traces/s_test1.txt","w") as f:
     output = ""
     while True:
+        
         i = txt[pc//4]
 
         # R type
@@ -204,11 +205,16 @@ with open("automatedTesting/tests/user_traces/s_test1.txt","w") as f:
             registers[rd] = imm * 2**12
             pc += 4
 
-        print("0b"+binary(pc),end=" ")
+        output += "0b"+binary(pc) + " "
         for j in registers.values():
-            print("0b"+binary(j),end=" ")
-        print()
+            output += "0b"+binary(j) + " "
+        output += "\n"
         if i == "00000000000000000000000001100011":
             break
         if pc == 0:
             break
+    
+    for i,j in memory.items():
+        output += f"{i.lower()}:0b{binary(j)}" + "\n"
+    
+    f.write(output)
