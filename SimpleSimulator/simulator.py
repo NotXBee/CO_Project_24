@@ -13,9 +13,6 @@ if type(i) == "add": # verified
     registers[rd] = registers[rs2] + registers[rs1]
     pc+=4
 
-<<<<<<< HEAD
-#B type    
-=======
 if type(i) == "sub" :
     rs2 = i[-25:-20]
     rs1 = i[-20:-15]
@@ -78,8 +75,7 @@ if type(i) == "and" : # verified
 
 
 # B type
->>>>>>> main
-if type(i) == "beq":
+if type(i) == "beq":  # verified
     imm = i[-32]+i[-8]+i[-31:-25]+i[-12:-8]
     rs2 = i[-25:-20]
     rs1 = i[-20:-15]
@@ -88,7 +84,7 @@ if type(i) == "beq":
     else:
         pc += 4
 
-if type(i) == "bne":
+if type(i) == "bne":  # verified
     imm = i[-32]+i[-8]+i[-31:-25]+i[-12:-8]
     rs2 = i[-25:-20]
     rs1 = i[-20:-15]
@@ -97,7 +93,7 @@ if type(i) == "bne":
     else:
         pc += 4
 
-if type(i) == "bge":
+if type(i) == "bge":  
     imm = i[-32]+i[-8]+i[-31:-25]+i[-12:-8]
     rs2 = i[-25:-20]
     rs1 = i[-20:-15]
@@ -171,7 +167,7 @@ if type(i) == "jalr":
 #S type
 if type(i) == "s_type":
     
-    imm = i[-32:-25]+i[-12:-7]
+    imm = twos_complement(i[-32:-25]+i[-12:-7])
     rs2 = i[-25:-20]
     rs1 = i[-20:-15]
     temp = registers[rs1] + binaryToDecimal(int(imm))
