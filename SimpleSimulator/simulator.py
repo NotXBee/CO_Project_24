@@ -174,6 +174,16 @@ if type(i) == "s_type":
     memory[hexadecimal(temp)] = registers[rs2]
     pc += 4
 
+
+# J type
+if type(i) == "j_type" :
+    rd = i[-12:-7]
+    imm = twos_complement(i[-32] + i[-22:-12] + i[-23] + i[-31:-23] + 0)
+    registers[rd] = pc + 4
+    pc += imm
+    pc *= 2
+
+
 print("0b"+binary(pc),end=" ")
 for i in registers.values():
     print("0b"+binary(i),end=" ")
