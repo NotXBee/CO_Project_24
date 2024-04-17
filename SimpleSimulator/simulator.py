@@ -183,6 +183,56 @@ if type(i) == "j_type" :
     pc += imm
     pc *= 2
 
+# I type
+
+if type(i) == "lw": #verified
+    pc+=4
+    rs1 = i[-20:-15]
+    imm = twos_complement(i[-32:-20])
+    rd = i[-12:-7]
+    temp = "0x" + hexadecimal(registers[rs1] + imm)
+    registers[rd] = memory[temp]
+
+if type(i) == "addi":   #verified
+    pc+=4
+    rs = i[-20:-15]
+    imm = twos_complement(i[-32:-20])
+    rd = i[-12:-7]
+    registers[rd] = registers[rs] + imm
+
+if type(i) == "sltiu":  #no test case found to verify
+    pc+=4
+    rs = i[-20:-15]
+    imm = twos_complement(i[-32:-20])
+    rd = i[-12:-7]
+    if(registers[rs] < imm):
+        registers[rd] = 1
+
+if type(i) == "jalr":   #partially verified, rd updationyet to be verified
+    pc+=4
+    rs = i[-20:-15]
+    imm = twos_complement(i[-32:-20])
+    rd = i[-12:-7]
+
+    registers[rd] = pc
+    pc = registers[rs] + imm
+    pc = pc * 2
+
+# U type
+
+if type(i) == "auipc":  #verified
+    imm = twos_complement(i[-32:-12])
+    rd = i[-12:-7]
+
+    registers[rd] = pc + imm * 2**12
+    pc += 4
+
+if type(i) == "lui":    #verified
+    imm = twos_complement(i[-32:-12])
+    rd = i[-12:-7]
+
+    registers[rd] = imm * 2**12
+    pc += 4
 
 print("0b"+binary(pc),end=" ")
 for i in registers.values():
