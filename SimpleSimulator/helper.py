@@ -202,6 +202,6 @@ def crange(num, bits):
 
 def unsigned(x):
   if x < 0:
-    return 2**4+x
+    return 2**32+x
   else:
     return x
