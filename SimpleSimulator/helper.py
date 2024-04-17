@@ -6,7 +6,12 @@ opcode_dict = {"0110011" : "r_type",
                "0010011" : "addi/sltiu", 
                "1100111" : "jalr", 
                "0110111" : "lui", 
-               "0010111" : "auipc"}
+               "0010111" : "auipc",
+               "1111111" : "mul",
+               "1111110" : "rst",
+               "1111101" : "halt",
+               "1111011" : "rvrs"}
+
 
 
 def binary(int, no_of_bits = 32) :
@@ -172,6 +177,17 @@ def lui(i):
 def auipc(i):
     return "auipc"
 
+def mul(i):
+    return "mul"
+
+def rst(i):
+    return "rst"
+
+def halt(i):
+    return "halt"
+
+def rvrs(i):
+    return "rvrs"
 
 def type(i):
     
@@ -194,6 +210,14 @@ def type(i):
         return lui(i)
     if type == "auipc":
         return auipc(i)
+    if type == "mul":
+        return mul(i)
+    if type == "rst":
+        return rst(i)
+    if type == "halt":
+        return halt(i)
+    if type == "rvrs":
+        return rvrs(i)
 
 def crange(num, bits):
     if num < (-(2**(bits-1))) or num > ((2**(bits-1))-1) :
