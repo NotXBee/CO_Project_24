@@ -219,8 +219,11 @@ with open(output_file,"w") as f:
             pc += 4
         
         if type(i) == "rst" :
-            pass
-            # left for piyush
+            for j in registers.keys():
+                registers[j] = 0
+            registers['00010'] = 0b00000000000000000000000100000000
+            pc += 4
+            
         
         if type(i) == "halt" :
             break
