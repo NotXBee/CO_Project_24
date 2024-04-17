@@ -9,8 +9,14 @@ opcode = {
     "jalr"   : "1100111",
     "lui"    : "0110111",
     "auipc"  : "0010111"
-        
+
 }
+bonus = [
+    "mul",
+    "rst",
+    "halt",
+    "rvrs"
+]
 
 r_type = [
     "add",
