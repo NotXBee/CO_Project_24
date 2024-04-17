@@ -209,6 +209,25 @@ with open(output_file,"w") as f:
             registers[rd] = imm * 2**12 if (rd!='00000') else 0
             pc += 4
 
+        
+        # Bonus
+        if type(i) == "mul" :
+            rd = i[-12:-7]
+            rs1 = i[-20:-15]
+            rs2 = i[-25:-20]
+            registers[rd] = registers[rs1] * registers[rs2]
+            pc += 4
+        
+        if type(i) == "rst" :
+            pass
+            # left for piyush
+        
+        if type(i) == "halt" :
+            break
+
+        if type(i) == "rvrs" :
+            pass
+
         registers['00000'] = 0
         output += "0b"+binary(pc) + " "
         for j in registers.values():
