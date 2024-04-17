@@ -15,6 +15,14 @@ def binary(int, no_of_bits = 32) :
     
     return format((1 << no_of_bits) + int, f'0{no_of_bits}b')
 
+def twos_complement(binary_str):
+    if binary_str[0] == '1':
+        positive_decimal = int(binary_str, 2)
+        number_of_bits = len(binary_str)
+        return positive_decimal - (1 << number_of_bits)
+    else:
+        return int(binary_str, 2)
+
 def hexadecimal(int_value, no_of_digits=8):
     if int_value >= 0:
         return format(int_value, f'0{no_of_digits}X')
