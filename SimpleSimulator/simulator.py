@@ -226,6 +226,11 @@ with open(output_file,"w") as f:
             
         
         if type(i) == "halt" :
+            pc += 4
+            output += "0b"+binary(pc) + " "
+            for j in registers.values():
+                output += "0b"+binary(j) + " "
+            output += "\n"
             break
 
         if type(i) == "rvrs" :
