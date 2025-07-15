@@ -48,14 +48,22 @@ A course-project for Introduction to Computer Organization & Architecture (Batch
 
 ## 📂 Repository Structure
 
-
-CO_Project_24/
-├── SimpleAssembler/ # source & tests for the assembler
-├── SimpleSimulator/ # pipeline simulator implementation
-├── automatedTesting/ # end-to-end assemble+simulate+verify scripts
-├── CO_Project_2024_v8.pdf # design spec & pipeline diagrams
-├── Project_Manual.txt # user guide & quick commands
-├── IMPORTANT.txt # project setup & naming conventions
+├── SimpleAssembler/ # assembler source & unit tests
+│ ├── assemble.py
+│ ├── parser.py
+│ └── tests/
+├── SimpleSimulator/ # 5‑stage pipeline simulator
+│ ├── simulate.py
+│ ├── pipeline.py
+│ └── utils.py
+├── automatedTesting/ # end‑to‑end test harness
+│ └── run_all_tests.py
+├── examples/ # sample .asm programs & binaries
+│ ├── hello_world.asm
+│ └── factorial.asm
+├── CO_Project_2024_v8.pdf # detailed spec, ISA doc, pipeline diagrams
+├── Project_Manual.txt # quick‑start guide & CLI reference
+├── IMPORTANT.txt # setup notes & naming conventions
 └── members.txt # team roster & GitHub handles
 
 
