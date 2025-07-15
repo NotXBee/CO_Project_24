@@ -1,4 +1,4 @@
-# CO_Project_24 – Python-Based CPU Assembler & Simulator
+# Python-Based CPU Assembler & Simulator
 
 A course-project for Computer Organization (Batch ’27), this is a fully-featured, Python-implemented assembler and cycle-accurate CPU simulator. It lets you write simple assembly programs, translate them into machine code, and step through instruction execution—complete with pipeline stages, hazard detection, register/memory tracing, and automated test harnesses.
 
