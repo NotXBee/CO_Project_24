@@ -48,6 +48,7 @@ A course-project for Introduction to Computer Organization & Architecture (Batch
 
 ## 📂 Repository Structure
 
+```
 CO_Project_24/
 ├── SimpleAssembler/       # assembler source & unit tests
 │   ├── assemble.py
@@ -66,8 +67,7 @@ CO_Project_24/
 ├── Project_Manual.txt     # quick‑start guide & CLI reference
 ├── IMPORTANT.txt          # setup notes & naming conventions
 └── members.txt            # team roster & GitHub handles
-
-
+```
 
 ---
 
