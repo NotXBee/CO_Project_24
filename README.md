@@ -49,14 +49,14 @@ A course-project for Introduction to Computer Organization & Architecture (Batch
 ## 📂 Repository Structure
 
 
-CO\_Project\_24/
-├── SimpleAssembler/       # source & tests for the assembler
-├── SimpleSimulator/       # pipeline simulator implementation
-├── automatedTesting/      # end-to-end assemble+simulate+verify scripts
-├── CO\_Project\_2024\_v8.pdf # design spec & pipeline diagrams
-├── Project\_Manual.txt     # user guide & quick commands
-├── IMPORTANT.txt          # project setup & naming conventions
-└── members.txt            # team roster & GitHub handles
+CO_Project_24/
+├── SimpleAssembler/ # source & tests for the assembler
+├── SimpleSimulator/ # pipeline simulator implementation
+├── automatedTesting/ # end-to-end assemble+simulate+verify scripts
+├── CO_Project_2024_v8.pdf # design spec & pipeline diagrams
+├── Project_Manual.txt # user guide & quick commands
+├── IMPORTANT.txt # project setup & naming conventions
+└── members.txt # team roster & GitHub handles
 
 
 ---
